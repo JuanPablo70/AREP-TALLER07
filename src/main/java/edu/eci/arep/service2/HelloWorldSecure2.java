@@ -12,7 +12,7 @@ public class HelloWorldSecure2 {
         port(getPort());
 
         get("/secure-local", (req, res) -> "Hello World Secure 2");
-        get("/secure-remote", (req, res) -> URLReader.secureUrl("https://localhost:5001/secure-local", "keystores/ssl1/ecikeystore.p12", "123456"));
+        get("/secure-remote", (req, res) -> URLReader.secureUrl("https://ec2-34-229-136-204.compute-1.amazonaws.com:5001/secure-local", "target/keystores/ssl1/ecikeystoreRemote.p12", "123456"));
     }
 
     static int getPort() {
@@ -26,7 +26,7 @@ public class HelloWorldSecure2 {
         if (System.getenv("KEYSTORE") != null) {
             return System.getenv("KEYSTORE");
         }
-        return "keystores/ssl2/ecikeystore2.p12";
+        return "target/keystores/ssl2/ecikeystoreRemote2.p12";
     }
 
     static String getPwdStore() {
